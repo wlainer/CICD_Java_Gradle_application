@@ -13,10 +13,7 @@ pipeline {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonartoken') {
                         sh 'chmod +x gradlew'
-                        sh './gradlew sonarqube \
-                          -Dsonar.host.url=${env.SONAR_HOST_URL} \
-                          -Dsonar.login=${env.SONAR_AUTH_TOKEN}'
-                    }
+                        sh './gradlew sonarqube'
 
                     timeout(time: 1, unit: 'HOURS') {
                         def qg = waitForQualityGate()
